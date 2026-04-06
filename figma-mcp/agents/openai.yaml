@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figma MCP"
+  short_description: "Robust Figma MCP extraction and workflow guardrails"
+  default_prompt: "Run Figma MCP in the correct mode and pipeline, extract clean design data, and prepare implementation-ready specs."

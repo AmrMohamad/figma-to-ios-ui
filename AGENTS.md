@@ -4,15 +4,24 @@ Repository-level instructions for AI coding agents working in this repo.
 
 ## Purpose
 
-This repository packages the public `figma-to-ios-ui` skill.
+This repository packages two public skills that are intended to be used together:
 
-Agents should treat the nested skill folder as the product:
-
+- `./figma-mcp/`
 - `./figma-to-ios-ui/`
 
-The root files exist to help agents select and use that skill correctly.
+The root files exist to help agents select and use the right skill at the right time.
 
 ## Auto-Trigger Rules
+
+Load `./figma-mcp/SKILL.md` automatically when the task involves any of these:
+
+- Figma URLs
+- node IDs
+- design extraction
+- Figma metadata
+- token extraction
+- screenshot capture
+- design-spec creation
 
 Load `./figma-to-ios-ui/SKILL.md` automatically when the task involves any of these:
 
@@ -33,8 +42,15 @@ Also load `./figma-to-ios-ui/subskills/project-ui-pattern-memory/SKILL.md` when:
 
 Do not wait for the developer to mention these skill names explicitly if the task clearly matches them.
 
+For Figma-to-iOS work, use them in order:
+
+1. `figma-mcp`
+2. `figma-to-ios-ui`
+
 ## Repo Layout
 
+- `./figma-mcp/SKILL.md`
+  - Figma extraction and design-evidence skill.
 - `./figma-to-ios-ui/SKILL.md`
   - Main public skill entrypoint.
 - `./figma-to-ios-ui/references/`
@@ -52,7 +68,7 @@ Do not wait for the developer to mention these skill names explicitly if the tas
 - Do not hard-code project-specific overlays into the base skill.
 - Prefer reusable guidance over narrow product-specific examples.
 - Preserve the separation of responsibilities:
-  - `figma-mcp` handles extraction discipline.
+  - `figma-mcp` handles extraction discipline and `design_spec`.
   - `figma-to-ios-ui` handles iOS translation, validation, and adaptation.
 - Keep UIKit/XIB guidance evidence-driven and runtime-aware.
 - Keep SwiftUI guidance architecture-neutral: preserve the target repo's proven patterns instead of imposing one.
