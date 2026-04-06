@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figma to iOS UI"
+  short_description: "Translate extracted Figma design data into repo-native iOS UI"
+  default_prompt: "Use $figma-to-ios-ui to translate extracted Figma MCP design data into UIKit/XIB or SwiftUI implementations, select the correct lane, learn the target repo's UI patterns when needed, validate the implementation against the design at the smallest proving scope, and capture only proven learning deltas back into project UI memory."
