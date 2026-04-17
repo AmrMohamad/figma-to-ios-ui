@@ -1,11 +1,24 @@
 # SwiftUI Navigation, Sheets, and Routing
 
+Start from:
+
+- `design_spec.interactions`
+- `design_spec.flow.primary_path`
+- `design_spec.flow.secondary_paths`
+- `design_spec.flow.terminal_states`
+
 ## Ownership rules
 
 - Keep navigation and presentation in the repo's existing owner.
 - Keep hosting-controller or bridge ownership with the local owner when the repo uses hosted SwiftUI screens.
 - Do not put cross-screen navigation logic inside the SwiftUI view body unless the repo already keeps it there.
 - Keep dismissal behavior where the repo already keeps it; do not split dismissal responsibility across layers without evidence.
+
+## Interaction-confidence rule
+
+- `high` confidence interaction -> may drive control choice and ownership directly
+- `medium` confidence interaction -> may shape the plan, but should remain an explicit assumption when behavior is not fully specified
+- `low` confidence interaction -> should remain an ambiguity or a re-extraction trigger, not invented behavior
 
 ## Modern API rule
 
@@ -34,3 +47,4 @@
 - If the SwiftUI view lives inside a UIKit host, preserve the host's presentation and dismissal behavior.
 - If a UIKit container expects a hosted child, do not change that embedding contract.
 - If a router expects `hostedInNavigation()` or a configured hosting controller, preserve that path instead of presenting the raw view.
+- If `flow` implies terminal states or multi-step paths the local host repo does not explain, keep them unresolved rather than inventing a route model.

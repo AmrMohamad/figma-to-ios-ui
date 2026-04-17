@@ -1,6 +1,8 @@
 # SwiftUI Lane Overview
 
-This lane translates extracted Figma design data into an existing SwiftUI codebase. It is not a generic “write SwiftUI however you like” guide, and it is intentionally architecture-neutral: preserve the target repo's proven patterns instead of imposing a new one.
+This lane translates `design_spec` and related extracted evidence from `figma-mcp` into an existing SwiftUI codebase. It is not a generic “write SwiftUI however you like” guide, and it is intentionally architecture-neutral: preserve the target repo's proven patterns instead of imposing a new one.
+
+Read `swiftui-design-spec-consumption.md` first.
 
 ## Core Rules
 
@@ -50,17 +52,24 @@ Focus on:
 ## Default Flow
 
 1. Confirm the active feature seam and implementation mode.
-2. Build or refresh a project UI memory brief if the repo patterns are not already known.
-3. Find the feature composition root.
-4. Confirm how the screen is hosted or presented.
-5. Confirm where state is owned.
-6. Confirm where navigation or presentation is owned.
-7. Inspect shared design-system wrappers, modifiers, button styles, and token surfaces.
-8. Map Figma sections into subviews and components that fit the current module.
-9. Validate screenshot fidelity, interactive intent, accessibility, and update risks.
+2. Consume the relevant `design_spec` evidence before proposing structure or behavior.
+3. Build or refresh a project UI memory brief if the repo patterns are not already known.
+4. Find the feature composition root.
+5. Confirm how the screen is hosted or presented.
+6. Confirm where state is owned.
+7. Confirm where navigation or presentation is owned.
+8. Inspect shared design-system wrappers, modifiers, button styles, and token surfaces.
+9. Map Figma sections into subviews and components that fit the current module.
+10. Validate screenshot fidelity, interactive intent, accessibility, and update risks.
 
 ## What to inspect before proposing code
 
+- `design_spec.layout_tree`
+- `design_spec.anatomy`
+- `design_spec.interactions`
+- `design_spec.flow`
+- `design_spec.business_assumptions`
+- `design_spec.unresolved`
 - feature composition root such as a factory, container, or registerer
 - navigation or presentation owner when the repo separates those concerns
 - view model, model store, or other observable owner
@@ -80,6 +89,7 @@ Focus on:
 - a design-system mapping plan
 - modern API and availability decisions for the touched surface
 - accessibility, motion, and performance checks that matter for the screen
+- evidence sufficiency and re-extraction need when relevant
 - a screenshot-based fidelity validation pass
 - a drift classification when the task is audit/repair
 
@@ -89,6 +99,7 @@ Load only the topic files needed for the task:
 
 | Topic | Reference |
 |---|---|
+| Design-spec intake and evidence consumption | `swiftui-design-spec-consumption.md` |
 | State ownership and data flow | `swiftui-state-and-data-flow.md` |
 | View composition and layout translation | `swiftui-view-structure-and-layout.md` |
 | Navigation, sheets, hosted routing | `swiftui-navigation-sheets-and-routing.md` |
@@ -105,6 +116,7 @@ Load only the topic files needed for the task:
 
 Treat these as bugs when violated:
 
+- implementation continues even though the extracted design evidence is internally inconsistent
 - screen-driving state is not split away into ad hoc local ownership
 - passed values and injected owners are not re-owned locally without a clear reason
 - repeated dynamic content does not use unstable identity or frozen snapshots
@@ -116,6 +128,7 @@ Treat these as bugs when violated:
 
 ## Topic references
 
+- `swiftui-design-spec-consumption.md`
 - `swiftui-state-and-data-flow.md`
 - `swiftui-view-structure-and-layout.md`
 - `swiftui-navigation-sheets-and-routing.md`

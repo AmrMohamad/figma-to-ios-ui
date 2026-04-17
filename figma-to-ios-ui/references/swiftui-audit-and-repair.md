@@ -2,6 +2,15 @@
 
 Use this reference when a SwiftUI implementation already exists and must be compared against `design_spec`, screenshot evidence, and project conventions.
 
+Require the same `design_spec` fields as the implementation lane:
+
+- `layout_tree`
+- `anatomy`
+- `interactions`
+- `flow`
+- `business_assumptions`
+- `unresolved`
+
 ## Review modes
 
 ### Visual drift review
@@ -52,6 +61,7 @@ Check:
 
 Classify findings as one or more of:
 
+- `Extraction evidence mismatch`
 - `Layout`
 - `Token`
 - `State ownership`
@@ -71,6 +81,7 @@ Classify findings as one or more of:
 5. identify the smallest seam that can restore fidelity
 6. preserve repo conventions while patching that seam
 7. record any deliberate deviations that remain
+8. if extraction evidence itself is inconsistent, stop and request re-extraction rather than classifying it as ordinary implementation drift
 
 ## Repair guardrails
 
@@ -79,3 +90,4 @@ Classify findings as one or more of:
 - do not replace owner-driven presentation with ad hoc local presentation state
 - do not treat a token mismatch as a layout rewrite problem until token mapping is verified
 - do not assume a repo-specific overlay exists; learn the repo from code if the current pattern is unclear
+- do not patch around extraction evidence mismatch as if it were ordinary layout or behavior drift

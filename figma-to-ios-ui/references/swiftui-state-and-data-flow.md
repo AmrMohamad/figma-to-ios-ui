@@ -9,6 +9,7 @@ Use this file when translating Figma structure into SwiftUI state and data owner
 - Do not push business logic down into view bodies.
 - Keep async work and side effects where the repo already expects them.
 - Reuse existing shared managers, stores, services, and shells instead of duplicating state from design.
+- Use `design_spec.business_assumptions` and `design_spec.unresolved` before inventing missing behavior or ownership.
 
 ## Owner selection guide
 
@@ -58,3 +59,4 @@ Use this file when translating Figma structure into SwiftUI state and data owner
 - Do not invent a new architecture pattern just because the design is clean.
 - Do not infer business behavior from visuals alone; record assumptions when the design cannot decide behavior.
 - Do not replace an existing shared manager or service with view-local duplicates just because the design introduces a new visual grouping.
+- If business intent is missing from `design_spec`, keep it unresolved unless the host repo pattern narrows it safely.

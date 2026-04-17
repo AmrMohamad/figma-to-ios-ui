@@ -35,7 +35,7 @@ This package is intentionally public-facing and generic.
 2. Read `references/lane-selection.md`.
 3. Route into exactly one implementation lane:
    - UIKit/XIB lane: `references/ios-uikit-xib-lane.md`
-   - SwiftUI lane: `references/swiftui-lane-overview.md`
+   - SwiftUI lane: read `references/swiftui-design-spec-consumption.md`, then `references/swiftui-lane-overview.md`
 4. If SwiftUI is selected and project UI patterns are not already clear, load `subskills/project-ui-pattern-memory/SKILL.md` and build or refresh a project UI memory brief.
 5. Load only the task-relevant reference files for the selected lane.
 6. If UIKit/XIB work touches a shared cell, row, card, section, or nib-backed reusable component, also load:
@@ -88,13 +88,22 @@ For UIKit/XIB work, preserve the XIB audit/runtime-diagnosis workflow and the me
 
 For SwiftUI work, include:
 
+- target node or frame identity used
 - state ownership choice
 - navigation or presentation ownership choice
 - component extraction plan
+- consumed `design_spec` evidence:
+  - structure source
+  - token source
+  - interaction source
+  - unresolved assumptions source
 - modern API and availability choices
 - token mapping plan
 - accessibility and motion checks
 - performance and update-risk checks
+- whether the design evidence was sufficient or whether re-extraction is required
+- whether platform chrome was filtered
+- whether any interaction or behavior remains low-confidence
 - screenshot parity checks
 - whether the task is generation or audit/repair
 - what the project UI memory brief learned or confirmed after validation
@@ -163,6 +172,7 @@ Use these when the selected lane is UIKit/XIB and the design is a reused list ro
 - `references/component-spec-sheet-template.md`
 - `references/token-verification-workflow.md`
 - `references/post-implementation-validation-and-learning.md`
+- `references/swiftui-design-spec-consumption.md`
 - `references/swiftui-lane-overview.md`
 - `references/swiftui-state-and-data-flow.md`
 - `references/swiftui-view-structure-and-layout.md`

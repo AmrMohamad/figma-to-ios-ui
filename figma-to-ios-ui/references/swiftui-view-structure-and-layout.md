@@ -1,5 +1,13 @@
 # SwiftUI View Structure and Layout
 
+Start from:
+
+- `design_spec.layout_tree`
+- `design_spec.anatomy.x_axis`
+- `design_spec.anatomy.y_axis`
+- `design_spec.anatomy.z_axis`
+- `design_spec.node.platform_chrome_filtered_nodes`
+
 ## Layout translation rules
 
 - Prefer existing shared layout primitives over raw values when the repo already exposes them.
@@ -8,6 +16,7 @@
 - Prefer always-present modifiers over conditional branches when the design expresses state changes on the same view rather than different views.
 - Prefer relative layout over screen-size assumptions or hard-coded device math.
 - Keep custom views context-agnostic unless the repo deliberately ships screen-specific components.
+- Decide the screen shell only after filtered platform chrome has been excluded.
 
 ## Reusable structure rules
 
@@ -29,6 +38,14 @@
 - Keep heavy action logic out of inline button closures when the repo already routes actions through methods or owners.
 - Preserve overlay/background hierarchy intentionally so the tappable and visual layers match the Figma anatomy.
 
+## `design_spec` structure mapping
+
+- Use `layout_tree` as the default source of container and parent-child structure.
+- Use `anatomy.x_axis` to understand horizontal anchors, sibling gaps, and width behavior.
+- Use `anatomy.y_axis` to understand vertical rhythm, stack cadence, and height behavior.
+- Use `anatomy.z_axis` to understand overlays, layering, overlap, and draw-order-sensitive affordances.
+- If screenshot intuition conflicts with `layout_tree` or `anatomy`, validate the extraction evidence before continuing.
+
 ## Layout audit checks
 
 - repeated layout constants should resolve to shared tokens when equivalents exist
@@ -44,3 +61,4 @@
 - Prefer stable existing tokens over raw values when they map cleanly.
 - When a raw value is required because no token exists, keep it explicit and local to the new component.
 - If exact parity conflicts with an existing shared component contract, document the deviation explicitly instead of silently weakening the design.
+- If major visual regions visible in the screenshot are absent from `layout_tree`, prefer re-extraction over structural guesswork.

@@ -10,6 +10,15 @@
 
 ## Validation checklist
 
+### Evidence integrity
+
+- `layout_tree` still accounts for the major visible screen regions
+- extracted structure does not materially conflict with screenshot grouping
+- token identity does not materially conflict with intended styling
+- unresolved critical interaction intent is low enough to support the ownership model
+
+If evidence integrity fails, recommend re-extraction before implementation rather than continuing with guessed interpretation.
+
 - layout hierarchy matches the intended screen anatomy
 - spacing rhythm matches Figma or mapped tokens
 - typography matches family, size, weight, and line-height intent
@@ -53,3 +62,10 @@ Do not rewrite the whole project UI memory brief unless the current task actuall
 ## Required implementation note
 
 When fidelity cannot be achieved exactly because of an existing project token or component contract, call out the deliberate deviation instead of hiding it.
+
+Also call out unresolved assumptions when:
+
+- design does not fully specify behavior
+- runtime data combinations could change the chosen component structure
+- host-shell ownership had to be inferred from nearby code rather than explicit documentation
+- extraction evidence was incomplete but implementation still proceeded with bounded assumptions

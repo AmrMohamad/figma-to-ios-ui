@@ -41,6 +41,8 @@ It answers the question:
 
 > Given the design evidence, what is the right iOS implementation here?
 
+For SwiftUI work specifically, the lane now consumes the structured `design_spec` from `figma-mcp` directly instead of treating MCP output as loose background context.
+
 ## Why they should be used together
 
 Using only `figma-mcp` is not enough for iOS implementation.
@@ -127,9 +129,10 @@ Default flow:
    - UIKit/XIB
    - SwiftUI
    - hybrid adaptation
-5. If the target repo has custom UI patterns, let `figma-to-ios-ui` use its companion sub-skill:
+5. For SwiftUI work, let it consume `design_spec` explicitly before proposing structure, state ownership, or navigation behavior.
+6. If the target repo has custom UI patterns, let `figma-to-ios-ui` use its companion sub-skill:
    - `project-ui-pattern-memory`
-6. After implementation, run the post-implementation validation loop.
+7. After implementation, run the post-implementation validation loop.
 
 In short:
 
